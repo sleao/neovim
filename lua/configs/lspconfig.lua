@@ -3,7 +3,7 @@ local nvlsp = require "nvchad.configs.lspconfig"
 local lspconfig = require "lspconfig"
 local util = require "lspconfig.util"
 
-local servers = { "html", "cssls", "ts_ls", "clangd", "ruff", "postgres_lsp", "rust_analyzer", "taplo" }
+local servers = { "html", "cssls", "ts_ls", "clangd", "postgres_lsp", "rust_analyzer", "taplo" }
 
 nvlsp.defaults()
 
@@ -15,6 +15,14 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+lspconfig.ruff.setup {
+  on_attach = nvlsp.on_attach,
+  capabilities = nvlsp.capabilities,
+  settings = {
+    root_markers = { "pyproject.toml", "ruff.toml", ".ruff.toml", ".git" },
+  },
+}
+
 lspconfig.gopls.setup {
   on_attach = nvlsp.on_attach,
   capabilities = nvlsp.capabilities,
@@ -25,6 +33,8 @@ lspconfig.gopls.setup {
     gopls = {
       completeUnimported = true,
       usePlaceholders = true,
+      staticcheck = true,
+      gofumpt = true,
       analyses = {
         unusedparams = true,
       },

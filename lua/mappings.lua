@@ -8,6 +8,8 @@ map("n", "<leader>di", '<cmd> lua vim.diagnostic.open_float(0, {scope="line"})<C
 -- centers page on up/down
 map("n", "<C-d>", "<C-d>zz")
 map("n", "<C-u>", "<C-u>zz")
+map("n", "<C-j>", "10jzz")
+map("n", "<C-k>", "10kzz")
 
 map("v", ">", ">gv", { desc = "indent" })
 

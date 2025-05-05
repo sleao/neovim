@@ -6,7 +6,6 @@ return {
     -- python
     "black",
     "ruff",
-    "ruff-lsp",
     "python-lsp-server",
 
     -- lua
