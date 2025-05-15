@@ -23,23 +23,10 @@ return {
   },
 
   {
-    "nvim-tree/nvim-tree.lua",
-    opts = require "configs.nvimtree",
-  },
-
-  {
     "max397574/better-escape.nvim",
     event = "InsertEnter",
     config = function()
       require("better_escape").setup()
-    end,
-  },
-
-  {
-    "folke/noice.nvim",
-    event = "VeryLazy",
-    config = function()
-      require "configs.noice"
     end,
   },
 
