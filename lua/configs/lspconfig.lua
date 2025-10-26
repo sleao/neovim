@@ -1,31 +1,22 @@
-local nvlsp = require "nvchad.configs.lspconfig"
+require("nvchad.configs.lspconfig").defaults()
 
-local lspconfig = require "lspconfig"
 local util = require "lspconfig.util"
 
 local servers = { "html", "cssls", "ts_ls", "clangd", "postgres_lsp", "rust_analyzer", "taplo" }
 
-nvlsp.defaults()
+vim.lsp.enable(servers)
 
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    on_attach = nvlsp.on_attach,
-    on_init = nvlsp.on_init,
-    capabilities = nvlsp.capabilities,
-  }
-end
-
-lspconfig.ruff.setup {
-  on_attach = nvlsp.on_attach,
-  capabilities = nvlsp.capabilities,
+vim.lsp.config("ruff", {
+  on_attach = on_attach,
+  capabilities = capabilities,
   settings = {
     root_markers = { "pyproject.toml", "ruff.toml", ".ruff.toml", ".git" },
   },
-}
+})
 
-lspconfig.gopls.setup {
-  on_attach = nvlsp.on_attach,
-  capabilities = nvlsp.capabilities,
+vim.lsp.config("gopls", {
+  on_attach = on_attach,
+  capabilities = capabilities,
   cmd = { "gopls" },
   filetypes = { "go", "gomod", "gowork", "gotmpl" },
   root_dir = util.root_pattern("go.work", "go.mod", ".git"),
@@ -40,11 +31,11 @@ lspconfig.gopls.setup {
       },
     },
   },
-}
+})
 
-lspconfig.pylsp.setup {
-  on_attach = nvlsp.on_attach,
-  capabilities = nvlsp.capabilities,
+vim.lsp.config("pylsp", {
+  on_attach = on_attach,
+  capabilities = capabilities,
 
   settings = {
     pylsp = {
@@ -55,13 +46,13 @@ lspconfig.pylsp.setup {
       },
     },
   },
-}
+})
 
-lspconfig.terraformls.setup {
-  on_attach = nvlsp.on_attach,
-  capabilities = nvlsp.capabilities,
+vim.lsp.config("terraformls", {
+  on_attach = on_attach,
+  capabilities = capabilities,
 
   cmd = { "terraform-ls", "serve" },
   filetypes = { "terraform", "terraform-vars" },
   root_dir = util.root_pattern(".terraform", ".git"),
-}
+})
