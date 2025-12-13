@@ -1,0 +1,1 @@
+/home/sleao/.config/omarchy/current/theme/neovim.lua
