@@ -41,6 +41,7 @@ return {
       for _, mapping in ipairs(mappings) do
         vim.keymap.set(mapping[1], mapping[2], mapping[3], opts)
       end
+      vim.keymap.set("t", "<C-x>", "<C-\\><C-n>")
     end,
   },
 }
