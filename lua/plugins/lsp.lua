@@ -9,6 +9,10 @@ return {
             { "<c-k>", false, mode = "i" },
           },
         },
+        pyright = {
+          mason = false,
+          autostart = false,
+        },
       },
     },
   },
